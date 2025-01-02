@@ -5,12 +5,13 @@ deploy:
     manifests:
       - ./infra/k8s/*
 build:
-  # local:
-  #   push: false
-  googleCloudBuild:
-    projectId: easy-tickets-dev
+  local:
+    push: false
+  #googleCloudBuild:
+  #projectId: easy-tickets-dev
   artifacts:
-    - image: southamerica-east1-docker.pkg.dev/easy-tickets-dev/auth/auth
+    #- image: southamerica-east1-docker.pkg.dev/easy-tickets-dev/auth/auth
+    - image: ticketing/auth
       context: auth
       docker:
         dockerfile: Dockerfile

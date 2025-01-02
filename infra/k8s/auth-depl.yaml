@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: auth
-          image: southamerica-east1-docker.pkg.dev/easy-tickets-dev/auth/auth
+          #image: southamerica-east1-docker.pkg.dev/easy-tickets-dev/auth/auth
+          image: ticketing/auth
 ---
 apiVersion: v1
 kind: Service
