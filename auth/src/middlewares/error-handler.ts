@@ -7,7 +7,6 @@ export const errorHandler = (
   res: Response,
   next: NextFunction // needs to be here to be recognized as a middleware on express
 ) => {
-  console.log("entrou no middleware");
   if (err instanceof CustomError) {
     return res.status(err.statusCode).send({ errors: err.serializeErrors() });
   }
