@@ -15,7 +15,7 @@ spec:
       containers:
         - name: auth
           #image: southamerica-east1-docker.pkg.dev/easy-tickets-dev/auth/auth
-          image: ticketing/auth
+          image: igorx8/auth
           env:
             - name: JWT_KEY
               valueFrom:
