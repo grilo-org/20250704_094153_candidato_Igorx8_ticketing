@@ -17,7 +17,7 @@ spec:
           #image: southamerica-east1-docker.pkg.dev/easy-tickets-dev/client/client
           image: igorx8/client
           resources:
-            requests:
+            requests: # lembrar de tirar isso aqui quando fizer o deploy
               cpu: "800m"
               memory: "4096Mi"
             limits:

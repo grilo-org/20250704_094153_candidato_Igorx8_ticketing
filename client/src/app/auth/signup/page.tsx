@@ -1,28 +1,21 @@
 "use client";
 import { FormEvent, useState } from "react";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import axios, { AxiosError } from "axios";
+import useRequest from "@/hooks/use-request";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+
+  const { doRequest, errors } = useRequest({
+    url: "/api/users/signup",
+    method: "post",
+    body: { email, password },
+  });
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    try {
-      const response = await axios.post("/api/users/signup", {
-        email,
-        password,
-      });
-
-      console.log(response.data);
-    } catch (e) {
-      if (e instanceof AxiosError) {
-        setErrors(e.response!.data.errors);
-      }
-    }
+    doRequest();
   };
 
   return (
@@ -68,20 +61,7 @@ const SignUp = () => {
       >
         Sign up
       </button>
-      {errors.length > 0 && (
-        <div
-          className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
-          role="alert"
-        >
-          <ul>
-            {errors.map((err: { message: string }, index) => (
-              <li key={index} className="mb-1">
-                {err.message}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {errors}
     </form>
   );
 };
