@@ -4,10 +4,12 @@ import axios from "axios";
 async function buildClient() {
   const cks = await cookies();
 
+  const session = cks.get("session")?.value;
+
   const axiosInstance = axios.create({
     baseURL: "http://easytickets.dev",
     headers: {
-      Cookie: cks.toString(),
+      Cookie: `session=${session}`,
     },
   });
 

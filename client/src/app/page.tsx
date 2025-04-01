@@ -6,11 +6,11 @@ export default async function Home() {
   try {
     const response = await axios.get("/api/users/currentuser");
     if (response.data.currentUser) {
-      console.log("Usuário atual: ", response.data.currentUser);
+      return <h1> You are signed in</h1>;
     }
-  } catch (error) {
-    console.error("Erro ao buscar o usuário atual:", error);
-  }
 
-  return <h1>Olá mundo </h1>;
+    return <h1> You are not signed in</h1>;
+  } catch (error) {
+    console.error("Error fetching current user:", error);
+  }
 }
