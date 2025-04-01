@@ -5,15 +5,21 @@ type useRequestProps = {
   url: string;
   method: "get" | "post" | "put" | "delete";
   body: object;
+  onSuccess?: (data: object) => void;
 };
 
-const useRequest = ({ url, method, body }: useRequestProps) => {
+const useRequest = ({ url, method, body, onSuccess }: useRequestProps) => {
   const [errors, setErrors] = useState<ReactElement | null>(null);
 
   const doRequest = async () => {
     try {
       setErrors(null);
       const response = await axios[method](url, body);
+
+      if (onSuccess) {
+        onSuccess(response.data);
+      }
+
       return response.data;
     } catch (e) {
       if (e instanceof AxiosError) {

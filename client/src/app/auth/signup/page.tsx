@@ -1,21 +1,24 @@
 "use client";
 import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 import useRequest from "@/hooks/use-request";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { push } = useRouter();
 
   const { doRequest, errors } = useRequest({
     url: "/api/users/signup",
     method: "post",
     body: { email, password },
+    onSuccess: () => push("/"),
   });
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    doRequest();
+    await doRequest();
   };
 
   return (
