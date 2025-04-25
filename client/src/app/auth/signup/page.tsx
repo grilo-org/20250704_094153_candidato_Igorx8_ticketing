@@ -2,17 +2,23 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import useRequest from "@/hooks/use-request";
+import { useUser } from "@/providers/UserProvider";
+import { IUser } from "@/interfaces/IUser";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { push } = useRouter();
+  const { setCurrentUser } = useUser();
 
   const { doRequest, errors } = useRequest({
     url: "/api/users/signup",
     method: "post",
     body: { email, password },
-    onSuccess: () => push("/"),
+    onSuccess: (user: IUser) => {
+      setCurrentUser(user);
+      push("/");
+    },
   });
 
   const onSubmit = async (event: FormEvent) => {

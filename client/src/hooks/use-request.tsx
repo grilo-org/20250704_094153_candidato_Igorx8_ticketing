@@ -5,7 +5,7 @@ type useRequestProps = {
   url: string;
   method: "get" | "post" | "put" | "delete";
   body: object;
-  onSuccess?: (data: object) => void;
+  onSuccess?: (data: any) => void;
 };
 
 const useRequest = ({ url, method, body, onSuccess }: useRequestProps) => {

@@ -1,11 +1,10 @@
-import buildClient from "@/api/buildClient";
+"use client";
+import { useUser } from "@/providers/UserProvider";
 
-export default async function Home() {
-  const axios = await buildClient();
-
+export default function Home() {
+  const { currentUser } = useUser();
   try {
-    const response = await axios.get("/api/users/currentuser");
-    if (response.data.currentUser) {
+    if (currentUser) {
       return <h1> You are signed in</h1>;
     }
 

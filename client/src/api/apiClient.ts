@@ -4,7 +4,6 @@ type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
 interface ApiClientOptions extends RequestInit {
   method?: HttpMethod;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   body?: any;
   cache?: RequestCache;
   next?: {
