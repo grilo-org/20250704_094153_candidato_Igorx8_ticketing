@@ -4,20 +4,16 @@ import { Ticket } from "../models/ticket";
 
 const router = express.Router();
 
-router.get(
-  "/api/tickets/:id",
-  requireAuth,
-  async (req: Request, res: Response) => {
-    const { id } = req.params;
+router.get("/api/tickets/:id", async (req: Request, res: Response) => {
+  const { id } = req.params;
 
-    const existingTicket = await Ticket.findById(id);
+  const existingTicket = await Ticket.findById(id);
 
-    if (!existingTicket) {
-      throw new NotFoundError();
-    }
-
-    res.send(existingTicket);
+  if (!existingTicket) {
+    throw new NotFoundError();
   }
-);
+
+  res.send(existingTicket);
+});
 
 export { router as showTicketRouter };
