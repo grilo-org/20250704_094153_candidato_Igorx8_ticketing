@@ -19,7 +19,6 @@ it("returns a status other then 401 if the user is signed in", async () => {
     .set("cookie", cookie)
     .send({});
 
-  console.log(response.status);
   expect(response.status).not.toEqual(401);
 });
 
